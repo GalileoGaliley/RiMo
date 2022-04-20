@@ -53,49 +53,8 @@ const PersonageListComponent = ({navigation}) => {
     return (
         <View style={[{backgroundColor: store.settings.back2}, local_style.container]}>
 
-            {preload?
-
-                <ScrollView style={[{backgroundColor:store.settings.back1},local_style.scroll_view]}>
-
-                    <View style={[{ backgroundColor:store.settings.back2},local_style.list]}>
-                        {store.personages.map(item =>
-                            <PersonageItem key={item.id} item={item} navigation={navigation} color={ store.settings.fontColor}/>
-                        )}
-
-                    </View>
-                    <View style={local_style.pageSelector}>
-                        <TouchableOpacity onPress={()=>{
-                            if (store.page.page >= 1) {
-                                dispatcher({type: PageListAction.previousPage});
-                                setPreload(false);
-                                setState(!state);
-                            }
-                        }}>
-                            <ArrowLeft width={40} height={40}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>{
-                            setVisiblePrompt(!visiblePrompt)
-                        }
-                        }>
-                            <Text style={[{color:store.settings.fontColor},local_style.pageNum]}>
-                                {store.page.page}
-                            </Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={()=>{
-                            if (store.page.page < store.page.allPages - 1){
-                                dispatcher({type:PageListAction.secondPage});
-                                setPreload(false);
-                                setState(!state);
-                            }
-                        }}>
-                            <ArrowRight width={40} height={40}/>
-                        </TouchableOpacity>
-                    </View>
-                </ScrollView>
-                :
                 <Preload />
-            }
+
             <Prompt
                 visiblePrompt={visiblePrompt}
                 setVision={setVisiblePrompt}

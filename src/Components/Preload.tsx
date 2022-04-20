@@ -8,13 +8,17 @@ import Portal from '../Static_images/portal.png';
 const Preload = () => {
     const local_style = styles.preload
     let spinValue = new Animated.Value(0)
-    Animated.timing(
-        spinValue,
-        {
-            toValue: 1,
-            duration: 5000,
-            easing: Easing.linear
-        }
+
+    Animated.loop(
+        Animated.timing(
+            spinValue,
+            {
+                toValue: 1,
+                duration: 5000,
+                easing: Easing.linear,
+                useNativeDriver: true
+            }
+        )
     ).start()
     const spin = spinValue.interpolate({
         inputRange: [0, 1],
